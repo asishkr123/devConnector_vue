@@ -4,58 +4,58 @@
   <div class="card">
    <div class="card-content">
      <div class="card-title">
-       <h3 class ="center-align">Create here</h3>
+       <h3 class ="center-align">Edit here</h3>
        <h6 class = "center-align">*=required fields</h6>
      </div>
      <div class="row">
     <form class="col s12" @submit.prevent= "createProfile">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" v-model="handle_name">
+          <input id="first_name" type="text" v-bind:value = "getCurrentProfile.handle" v-model="handle_name">
           <label for="first_name">*Handle Name</label>
           <div v-if="errors"> <span class="helper-text red-text" data-error="wrong">{{$store.state.error.error.handle}}</span></div>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" v-model="company">
+          <input id="last_name" type="text" v-bind:value ="getCurrentProfile.company" v-model="company">
           <label for="last_name">Company</label>
           <div v-if="errors"> <span class="helper-text red-text" data-error="wrong">{{$store.state.error.error.company}}</span></div>
         </div>
       </div>
        <div class="row">
          <div class="input-field col s12">
-           <input id="status" type="text" v-model="selectedOption">
+           <input id="status" type="text" v-bind:value="getCurrentProfile.status" v-model="selectedOption">
           <label for="status">*Provide your Professional status</label>
           <div v-if="errors"> <span class="helper-text red-text" data-error="wrong">{{$store.state.error.error.status}}</span></div>
          </div>
       </div>  
        <div class="row">
         <div class="input-field col s6">
-          <input id="website" type="text" v-model="website">
+          <input id="website" type="text" v-model="website" v-bind:value = "getCurrentProfile.website ? getCurrentProfile.website : ' ' ">
           <label for="website">website</label>
         </div>
          <div class="input-field col s6">
-          <input id="location" type="text" v-model = "location">
+          <input id="location" type="text" v-model = "location" v-bind:value = "getCurrentProfile.location ? getCurrentProfile.location : ' ' ">
           <label for="location">location</label>
         </div>
        </div> 
         <div class="row">
         <div class="input-field col s6">
-          <input id="website" type="text" v-model="skills">
-          <label for="website">*skills</label>
+          <input id="skills" type="text" v-model="skills" v-bind:value = "getCurrentProfile.skills.toString()">
+          <label for="skills">*skills</label>
           <div v-if="errors"><span class="helper-text red-text" data-error="wrong">{{$store.state.error.error.skills}}</span></div>
         </div>
          <div class="input-field col s6">
-          <input id="github" type="text" v-model = "github">
+          <input id="github" type="text" v-model = "github" v-bind:value = "getCurrentProfile.githubusername ? getCurrentProfile.githubusername : '' ">
           <label for="github">Github Username</label>
         </div>
        </div>
         <div class="row">
         <div class="input-field col s12">
-          <textarea placeholder="a short bio of yourself" type ="text" v-model ="bio" id="bio"/>
+          <textarea placeholder="a short bio of yourself" type ="text" v-model ="bio" id="bio" v-bind:value = "getCurrentProfile.bio ? getCurrentProfile.bio : ''"/>
         </div>
         </div> 
        <div class="row">
-            <button class="btn waves-effect waves-light col s4 blue lighten-2">Add Profile here</button>         
+            <button class="btn waves-effect waves-light col s4 blue lighten-2">Edit Profile here</button>         
        </div>
     </form>   
   </div>  
@@ -74,6 +74,9 @@
 <script>
 export default {
   name :  "AddProfile",
+  created(){
+     this.$store.dispatch('getCurrentProfile')
+  },
   computed : {
      errors(){
        if(this.$store.state.error.error){
@@ -81,6 +84,9 @@ export default {
        } else {
          return false
        }
+     },
+     getCurrentProfile(){
+      return this.$store.getters.getProfile
      }
   },
   data(){

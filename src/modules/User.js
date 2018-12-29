@@ -21,6 +21,13 @@ export const UserModule = {
         },
         getUser(state){
             return state.User;
+        },
+        getUserName(state){
+            console.log(state.User.name)
+            return state.User.name
+        },
+        getUserAvatar(state){
+            return state.User.avatar;
         }
    },
      mutations : {

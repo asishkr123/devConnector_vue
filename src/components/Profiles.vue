@@ -10,7 +10,7 @@
                    <div class="col s5 content">
                         <h3>{{profile.user.name.toUpperCase()}}</h3>
                         <p>{{profile.status}}</p>
-                        <p>{{profile.location ? " " : profile.location}}</p>
+                        <p>{{profile.location ? profile.location : ''}}</p>
                         <!-- <button><router-link :to="{name : 'Profile' , params : {handle : profile.handle}}">view Profile</router-link></button> -->
                        <router-link :to="{name : 'Profile' , params : {handle : profile.handle}}"> <button class="btn waves-effect white-text blue waves-light  lighten-2">View Profile</button></router-link>
                    </div>

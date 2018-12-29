@@ -9,6 +9,8 @@
         <li><router-link :to="{name : 'Login'}">Login</router-link></li>
         </div>
         <div v-else>
+          <li><router-link :to="{name : 'Activity' , params : {id : getUser.id}}">Activity</router-link></li>        
+          <li><router-link :to="{name : 'Posts'}">Posts feed</router-link></li>        
           <li><router-link :to="{name : 'Dashboard'}">Dashboard</router-link></li>
           <li @click="logOutUser"><a href = " ">Logout</a></li>
         </div>
@@ -45,8 +47,9 @@ export default {
   computed : {
     isUserAuthenticated(){
       return  this.$store.getters.isUserAuthenticated
-       
-
+    },
+    getUser(){
+      return this.$store.getters.getUser
     }
   } 
 }

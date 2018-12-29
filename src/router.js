@@ -9,6 +9,10 @@ import AddProfile from  './views/AddProfile';
 import Profiles   from './components/Profiles';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
+import Posts   from  './components/Posts';
+import Post   from  './components/Post';
+import Activity from './components/Activity';
+// import EditBio from './components/EditBio';
 
 import {store} from './store';
 
@@ -61,6 +65,12 @@ const router =  new Router({
       secure : true,
       component : AddProfile
     },
+    // {
+    //   path : "/edit-profile",
+    //   name :  "EditProfile",
+    //   secure : true,
+    //   component : EditBio
+    // },
     {
       path :   "/profiles",
       name :  "Profiles",
@@ -70,6 +80,24 @@ const router =  new Router({
       path :   "/profile/:handle",
       name :  "Profile",
       component : Profile
+    },
+    {
+      path :   '/posts',
+      name :   "Posts",
+      component : Posts,
+      secure : true
+    },
+    {
+      path :   "/post/:id",
+      name :    "Post",
+      component : Post,
+      secure : true
+    },
+    {
+      path : "/activity/:id",
+      name  : 'Activity',
+      component : Activity,
+      secure : true
     }
     
   ]

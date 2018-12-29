@@ -12,9 +12,14 @@
   <div v-else>
   <div class="container dashboard">
      <h3 class="align-center ">Dashboard</h3>
-     <button @click="showButtons" class="mt button btn waves-effect waves-light white-text">{{createOrAdd}} Profile here</button>
+     <button @click="showButtons" class="mt button btn waves-effect waves-light white-text">Add Profile here</button>
      <div v-if = "show">
-     <router-link :to="{name : 'AddProfile'}"><button  class="mt button btn waves-effect waves-light white-text">{{createOrAdd}} bio</button></router-link> 
+      <div v-if="createOrAdd">
+     <router-link :to="{name :'AddProfile'}"><button  class="mt button btn waves-effect waves-light white-text">Add bio</button></router-link>           
+      </div>
+      <!-- <div v-else>
+     <router-link :to="{name :'EditProfile'}"><button  class="mt button btn waves-effect waves-light white-text">Edit bio</button></router-link>                 
+      </div>  -->
      <router-link :to="{name : 'AddExperience'}"><button  class="mt button btn waves-effect waves-light white-text">Add Experience</button></router-link> 
      <router-link :to="{name : 'AddEducation'}"><button  class="mt button btn waves-effect waves-light white-text">Add Education</button></router-link> 
      </div>      
@@ -67,7 +72,7 @@ export default {
         return this.$store.getters.getProfileloading
       },
       createOrAdd(){
-         return  this.$store.getters.getProfile === null || Object.keys(this.$store.getters.getProfile).length === 0 ? 'Add' : 'Edit'  
+         return  this.$store.getters.getProfile === null || Object.keys(this.$store.getters.getProfile).length === 0 
       },
       education(){
         return this.$store.getters.getEducation

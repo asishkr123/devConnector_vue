@@ -22,6 +22,7 @@ import axios from 'axios';
      },
      getters : {
         getProfile(state){
+            console.log(state.profile)
             return state.profile
         },
         getProfileloading(state){
@@ -46,10 +47,8 @@ import axios from 'axios';
             axios.get('/api/profile')
             .then(res => {
               context.commit('getCurrentProfile',res.data)
-              return Promise.resolve()
             }).catch( () => {
                 context.commit('getCurrentProfile',{})
-                return  Promise.resolve()
 
             })
         },
